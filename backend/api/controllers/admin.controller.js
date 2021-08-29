@@ -21,9 +21,9 @@ const sign_in = async (req,res) => {
 };
 
 const get_student = (req,res) => {
-    Student.find({username: req.params.username})
+    Student.findById(req.params.id)
         .then(result => {
-            res.status(200).json({data: result});
+            res.status(200).json(result);
         })
         .catch(err => {
             res.status(404).json({message: err.message});
