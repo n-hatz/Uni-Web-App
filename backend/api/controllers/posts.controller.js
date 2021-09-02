@@ -4,7 +4,7 @@ import Post from "../../models/post.js";
 
 const get_posts = async (req,res) => {
     const { page } = req.query;
-    const limit = 5;
+    const limit = 10;
     const start = (Number(page) - 1) * limit;
 
     try {
