@@ -13,6 +13,11 @@ const adminSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    major: {
+        type: String,
+        default: "Admin",
+        required: true
+    }
 })
 
 const Admin = mongoose.model('Admin',adminSchema);
