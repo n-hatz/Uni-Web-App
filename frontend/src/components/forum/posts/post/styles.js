@@ -25,7 +25,7 @@ export default makeStyles({
     position: 'absolute',
     top: '20px',
     left: '20px',
-    color: 'black',
+    color: 'white',
   },
   overlay2: {
     position: 'absolute',
