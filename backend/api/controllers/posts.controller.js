@@ -10,7 +10,7 @@ const get_posts = async (req,res) => {
     try {
         const totalPosts = await Post.countDocuments();
         const posts = await Post.find().sort({updatedAt: -1}).limit(limit).skip(start);
-        res.json({data: posts, page: page, totalPages: Math.ceil(totalPosts / limit)})
+        res.json({data: posts, page: page, totalPages: Math.ceil(totalPosts / limit)});
     } catch(err) {
         res.status(404).json({ message: err.message});
     }
@@ -74,7 +74,7 @@ const add_comment = async (req,res) => {
 
     try {
         const updated = await Post.findByIdAndUpdate(req.params.id,post,{new: true});
-        res.status(200).json(updated);
+        res.status(201).json(updated);
     } catch (err) {
         res.status(409).json({message: err.message});
     }
@@ -92,7 +92,7 @@ const delete_comment = async (req,res) => {
     if (index > -1) {
     comments.splice(index, 1);
     } else {
-        console.log('No comment with this id found.');
+        res.status(404).json({message: "Comment not found."});
     }
 
     post.comments = comments;   //set post comments as new comments
@@ -101,6 +101,7 @@ const delete_comment = async (req,res) => {
         //const updated = await Post.updateOne({_id: pid}, {$pull: {'comments': {_id: cid} }}, {new: true});
         const updated = await Post.findByIdAndUpdate(pid,post,{new: true});
         res.status(200).json(updated);  //status 200 so content is returned
+        //res.status(204).json(updated);
     } catch(err) {
         res.status(409).json({message: err.message});
     }
