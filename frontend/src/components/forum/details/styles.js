@@ -61,5 +61,16 @@ export default makeStyles((theme) => ({
   },
   title: {
     padding: '0 16px'
-  }
+  },
+  section2: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderRadius: '15px',
+    height: '100%',
+    position: 'relative',
+    borderRadius: '20px',
+    margin: '10px',
+    flex: 1,
+  },
 }));

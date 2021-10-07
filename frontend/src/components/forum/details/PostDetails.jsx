@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Paper, Typography, CircularProgress, Divider, Grid,Card } from '@material-ui/core/';
+import { Paper, Typography, CircularProgress, Divider, Grid, Card, CardContent } from '@material-ui/core/';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { useParams, useHistory } from 'react-router-dom';
@@ -41,28 +41,30 @@ const PostDetails = () => {
             <Divider style={{ margin: '10px 0' }} />
             <Typography variant="h4" component="h4">{post.title}</Typography>
             <Typography gutterBottom variant="body1" component="p">{post.body}</Typography>
-            <Divider style={{ margin: '20px 0' }} />
+            <Divider style={{ margin: '10px 0' }} />
             <Comments post={post} />
+            <Divider style={{ margin: '10px 0'}} />
+            <Typography gutterBottom variant="h6">Other posts by {post.author}:</Typography>
+            <Grid classname={classes.container} container alignItems="stretch" spacing={12}>
+              {!!authorPosts.length && (  //double !! so 0 doesn't show
+                <div className={classes.section2}>
+                  {authorPosts.map((p) => (
+                    <Grid key={p._id} onClick={() => handleClick(p._id)} style={{ margin: '20px', cursor: 'pointer', }} item xs={12} sm={12} md={6} lg={3}>
+                      <Card className={classes.card2} raised elevation={6} >
+                        <Typography className={classes.title} gutterBottom variant="h6">{p.title}</Typography>
+                        <CardContent>
+                          <Typography gutterBottom variant="subtitle2">{p.body.split(' ').splice(0, 20).join(' ')}...</Typography>
+                        </CardContent>
+                        <Typography className={classes.title} gutterBottom variant="subtitle1">{p.comments.length} comments</Typography>
+                      </Card>
+                    </Grid>
+                  ))}
+                </div>
+              )}
+            </Grid>
           </div>
         </div>
       </Paper>
-      <Divider style={{ margin: '20px 0' }} />
-      <Grid classname={classes.container} container alignItems="stretch" spacing={3}>
-        {!!authorPosts.length && (
-          <div className={classes.section}>
-            <Typography gutterBottom variant="h5">{post.author}'s other posts:</Typography>
-              {authorPosts.map((p) => (
-                <Grid key={p._id} onClick={() => handleClick(p._id)} style={{ margin: '20px', cursor: 'pointer' }} item xs={12} sm={12} md={6} lg={3}>
-                  <Card className={classes.card2} raised elevation={6} >
-                    <Typography gutterBottom variant="h6">{p.title}</Typography>
-                    <Typography gutterBottom variant="subtitle2">{p.body.split(' ').splice(0, 20).join(' ')}...</Typography>
-                    <Typography gutterBottom variant="subtitle1">{p.comments.length} comments</Typography>
-                  </Card>
-                </Grid>
-              ))}
-          </div>
-        )}
-      </Grid>
     </>
   );
 };
