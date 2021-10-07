@@ -9,8 +9,8 @@ const Department = ({department}) => {
     return ( 
         <Card className={classes.card} raised elevation={6}>
           <div className={classes.overlay}>
-            <Typography variant="h6">Department of {department.name}</Typography>
-            <Typography variant="body2">Location: {department.building}</Typography>
+            <Typography className={classes.label} variant="h6">Department of {department.name}</Typography>
+            <Typography className={classes.label} variant="body2">Location: {department.building}</Typography>
           </div>
           <div>
             <Accordion>

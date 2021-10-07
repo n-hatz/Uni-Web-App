@@ -86,4 +86,7 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  label: {
+    padding: '0 16px'
+  }
 }));
