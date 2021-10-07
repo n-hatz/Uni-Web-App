@@ -10,6 +10,7 @@ import DeptHome from './components/main/departments/DeptHome';
 import Info from './components/main/info/Info';
 import ControlPanel from './components/admin/ControlPanel';
 import AdminHome from './components/admin/AdminHome';
+import Footer from './components/main/navbar/Footer';
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/admin/search" exact component={AdminHome} />
           <Route path="/admin/students/:id" exact component={ControlPanel} />
         </Switch>
+        <Footer />
       </Container>
     </BrowserRouter>
   );
