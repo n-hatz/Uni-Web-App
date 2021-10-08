@@ -5,7 +5,7 @@ import Post from "../../models/post.js";
 const get_posts = async (req,res) => {
     const { page } = req.query;
     const limit = 10;
-    const start = (Number(page) - 1) * limit;
+    const start = (Number(page) - 1) * limit;   //index of first post of page
 
     try {
         const totalPosts = await Post.countDocuments();
@@ -19,7 +19,7 @@ const get_posts = async (req,res) => {
 const new_post = (req,res) => {
     const post = new Post(req.body);
 
-    post.save()
+    post.save() //add new post
         .then(result => {
             res.status(201).json(result);
         })
@@ -29,7 +29,7 @@ const new_post = (req,res) => {
 };
 
 const post_details = (req,res) => {
-    Post.findById(req.params.id)
+    Post.findById(req.params.id)    //search for post by id
         .then(result => {
             res.status(200).json(result);
         })
@@ -41,7 +41,7 @@ const post_details = (req,res) => {
 const edit_post = (req,res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(404).send(`No post with id: ${req.params.id}`);
 
-    Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    Post.findByIdAndUpdate(req.params.id, req.body, {new: true})    //update post with edited info
         .then(result => {
             res.status(200).json(req.body);
         })
@@ -54,7 +54,7 @@ const edit_post = (req,res) => {
 const delete_post = (req,res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(404).send(`No post with id: ${req.params.id}`);
 
-    Post.findByIdAndDelete(req.params.id)
+    Post.findByIdAndDelete(req.params.id)   //delete post by id
         .then(result => {   //or status 204 maybe
             res.status(204).json({
                 message: "Deleted successfully."
@@ -69,11 +69,11 @@ const delete_post = (req,res) => {
 const add_comment = async (req,res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) return res.status(404).send(`No post with id: ${req.params.id}`);
 
-    const post = await Post.findById(req.params.id);
-    post.comments.push(req.body);
+    const post = await Post.findById(req.params.id);    //find post
+    post.comments.push(req.body);   //add new comment to existing comments array
 
     try {
-        const updated = await Post.findByIdAndUpdate(req.params.id,post,{new: true});
+        const updated = await Post.findByIdAndUpdate(req.params.id,post,{new: true});   //update found post
         res.status(201).json(updated);
     } catch (err) {
         res.status(409).json({message: err.message});

@@ -1,7 +1,7 @@
 import Department from '../../models/department.js';
 
 const get_depts = (req,res) => {
-    Department.find()
+    Department.find()   //find all depts in database
         .then((result) => {
             res.status(200).json({data: result})
         })
