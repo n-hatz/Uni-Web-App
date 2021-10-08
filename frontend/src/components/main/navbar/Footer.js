@@ -9,9 +9,9 @@ const Footer = () => {
     return ( 
         
             
-                <Toolbar position="abosolute" bottom="0">
+                <Toolbar position="abosolute" bottom="0px">
                 <Typography variant="body1" color="inherit">
-                    - 2021 <Link href="https://github.com/n-hatz">n-hatz</Link> -
+                    - 2021 <Link href="https://github.com/n-hatz">n-hatz</Link>
                 </Typography>
                 </Toolbar>
             
