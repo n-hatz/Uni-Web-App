@@ -46,7 +46,7 @@ const AdminHome = () => {
                 <div>
                     <Typography className={classes.label} variant="h6">Search students: </Typography>                      
                     <TextField size="small" margin="dense"  variant="outlined" onKeyDown={handleKeyPress} name="username" label="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    <FormControl className={classes.formControl}>
+                    <FormControl>
                         <InputLabel htmlFor="major-select">Major</InputLabel>
                         <Select native value={major} onChange={(e) => setMajor(e.target.value)} inputProps={{name: 'major', id: "major-select"}}>
                             <option aria-label="None" value="" />
@@ -56,9 +56,9 @@ const AdminHome = () => {
                             <option value={"EE"}>Electrical Engineering</option>
                         </Select>
                     </FormControl>
-                    <Button onClick={searchStudent} className={classes.searchButton} variant="contained" color="primary">Search</Button>
+                    <Button onClick={searchStudent} variant="contained" color="primary">Search</Button>
                 </div>
-                <Grid container justifyContent="space-between" alignItems="stretch" spacing={3} className={classes.gridContainer}>
+                <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
                     <Grid item xs={12} sm={6} md={6}>
                        {//
                        <StudentList /> 
@@ -67,7 +67,7 @@ const AdminHome = () => {
                 </Grid>
                 {
                     (!query_username && !query_major) && (page) && (
-                        <Paper className={classes.pagination} elevation={6}>
+                        <Paper elevation={6}>
                            <Pagination page={page} type={"students"} />
                         </Paper>
                     )

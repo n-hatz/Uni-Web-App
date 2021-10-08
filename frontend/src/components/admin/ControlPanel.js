@@ -36,8 +36,6 @@ const ControlPanel = () => {
       <Container maxWidth="xl">
         <Grid container justifyContent="space-between" alignItems="stretch" spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} sm={6} md={6}>
-            {//<GradesTable student={student} setCurrentId={setCurrentId} />
-            }
             <GradesTable setCurrentId={setCurrentId} />
           </Grid>
           <Grid item xs={12} sm={6} md={6}>

@@ -18,7 +18,7 @@ const GradesTable = ({ setCurrentId}) => {
         (
         <Paper className={classes.paper} elevation={6}>
             <TableContainer component={Paper}>
-                <Table className={classes.table}>
+                <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell>Course code</TableCell>
