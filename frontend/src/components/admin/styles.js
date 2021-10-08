@@ -24,4 +24,13 @@ export default makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  overlay: {
+    position: 'absolute',
+      top: '20px',
+      left: '20px',
+      color: 'white',
+  },
+  label: {
+    padding: '0 16px'
+  }
 }));
